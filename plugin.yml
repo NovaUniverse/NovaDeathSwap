@@ -1,0 +1,6 @@
+name: DeathSwap
+main: net.novauniverse.games.deathswap.NovaDeathSwap
+description: Novauniverse DeathSwap
+version: 1.0
+depend: [NovaCore]
+softdepend: [NovaGamesTarget]

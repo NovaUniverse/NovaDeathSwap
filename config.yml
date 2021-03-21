@@ -1,0 +1,11 @@
+allow_reconnect: true
+
+combat_tagging: true
+
+player_elimination_delay: 180
+
+use_invulnerability: false
+
+nether_enabled: false
+
+use_countdown: true
