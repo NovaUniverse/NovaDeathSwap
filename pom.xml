@@ -15,6 +15,17 @@
 		<maven-deploy-plugin-version>3.0.0-M1</maven-deploy-plugin-version>
 	</properties>
 
+	<distributionManagement>
+		<snapshotRepository>
+			<id>novauniverse</id>
+			<url>https://nexus.novauniverse.net/repository/novauniverse/</url>
+		</snapshotRepository>
+		<repository>
+			<id>novauniverse</id>
+			<url>https://nexus.novauniverse.net/repository/novauniverse/</url>
+		</repository>
+	</distributionManagement>
+
 	<build>
 		<resources>
 			<resource>
@@ -105,8 +116,8 @@
 		</repository>
 
 		<repository>
-			<id>zeeraas repo</id>
-			<url>https://nexus.zeeraa.net/repository/maven-group/</url>
+			<id>novauniverse-group</id>
+			<url>https://nexus.novauniverse.net/repository/novauniverse-group/</url>
 		</repository>
 	</repositories>
 
@@ -137,6 +148,13 @@
 		<dependency>
 			<groupId>net.zeeraa.novacore</groupId>
 			<artifactId>novacore-spigot</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>net.zeeraa.novacore</groupId>
+			<artifactId>novacore-gameengine</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
