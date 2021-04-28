@@ -2,17 +2,17 @@
 	"language_code": "en-us",
 	"language_name": "English",
 	"content": {
-		"novauniverse.game.deathswap.nether_disabled": "§cNether is disabled",
-		"novauniverse.game.deathswap.nether_disabled_broadcast": "§cNether is disabled! Nether portals wont do anything",
-		"novauniverse.game.deathswap.nether_enabled_broadcast": "§bNether is enabled!",
-		"novauniverse.game.deathswap.portal_border_warning": "§c§lWarning: If your portal is outside the world border when you return to the world you will get instantly killed!",
-		"novauniverse.game.deathswap.world_loaded": "§6§lThe world has been loaded",
-		"novauniverse.game.deathswap.invulnerability_started": "§6Invulnerable for 5 seconds",
-		"novauniverse.game.deathswap.invulnerability_ended": "§6No longer invulnerable",
-		"novauniverse.game.deathswap.swap": "[@] Commencing swap!",
-		"novauniverse.game.deathswap.swap_countdown": "§a§lSwapping in §b§l%s",
-		"novauniverse.game.deathswap.swap.error.failed": "§cAn error occured during swapping. Some players might not swap",
-		"novauniverse.game.deathswap.swap.error.not_enough_players": "§cNot enought players online to swap",
-		"novauniverse.game.deathswap.swap.error.not_enough_teams": "§cNot enought teams online to swap"
+		"novauniverse.game.deathswap.nether_disabled": "Â§cNether is disabled",
+		"novauniverse.game.deathswap.nether_disabled_broadcast": "Â§cNether is disabled! Nether portals wont do anything",
+		"novauniverse.game.deathswap.nether_enabled_broadcast": "Â§bNether is enabled!",
+		"novauniverse.game.deathswap.portal_border_warning": "Â§cÂ§lWarning: If your portal is outside the world border when you return to the world you will get instantly killed!",
+		"novauniverse.game.deathswap.world_loaded": "Â§6Â§lThe world has been loaded",
+		"novauniverse.game.deathswap.invulnerability_started": "Â§6Invulnerable for 5 seconds",
+		"novauniverse.game.deathswap.invulnerability_ended": "Â§6No longer invulnerable",
+		"novauniverse.game.deathswap.swap": "Â§aSwapping",
+		"novauniverse.game.deathswap.swap_countdown": "Â§aÂ§lSwapping in Â§bÂ§l%s",
+		"novauniverse.game.deathswap.swap.error.failed": "Â§cAn error occured during swapping. Some players might not swap",
+		"novauniverse.game.deathswap.swap.error.not_enough_players": "Â§cNot enought players online to swap",
+		"novauniverse.game.deathswap.swap.error.not_enough_teams": "Â§cNot enought teams online to swap"
 	}
 }
