@@ -75,6 +75,10 @@ public class DeathSwap extends Game implements Listener {
 
 	private boolean invulnerabilityEnabled;
 
+	public DeathSwap() {
+		super(NovaDeathSwap.getInstance());
+	}
+	
 	/* -=-= Getters and setters =-=- */
 	public WorldPreGenerator getWorldPreGenerator() {
 		return worldPreGenerator;
