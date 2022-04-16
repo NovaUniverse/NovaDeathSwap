@@ -13,10 +13,10 @@ import net.novauniverse.games.deathswap.game.DeathSwap;
 import net.novauniverse.games.deathswap.game.swapprovider.SwapProvider;
 import net.novauniverse.games.deathswap.game.swapprovider.defaultswapprovider.DefaultSwapProvider;
 import net.zeeraa.novacore.commons.log.Log;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.GameManager;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.gamelobby.GameLobby;
 import net.zeeraa.novacore.spigot.language.LanguageReader;
 import net.zeeraa.novacore.spigot.module.ModuleManager;
-import net.zeeraa.novacore.spigot.module.modules.game.GameManager;
-import net.zeeraa.novacore.spigot.module.modules.gamelobby.GameLobby;
 
 public class NovaDeathSwap extends JavaPlugin implements Listener {
 	private static NovaDeathSwap instance;
@@ -114,8 +114,8 @@ public class NovaDeathSwap extends JavaPlugin implements Listener {
 		}
 
 		// Enable required modules
-		ModuleManager.enable(GameManager.class);
-		ModuleManager.enable(GameLobby.class);
+		ModuleManager.require(GameManager.class);
+		ModuleManager.require(GameLobby.class);
 
 		// Init game
 		this.game = new DeathSwap();

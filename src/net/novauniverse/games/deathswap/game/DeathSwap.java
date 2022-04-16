@@ -40,14 +40,14 @@ import net.zeeraa.novacore.spigot.abstraction.enums.VersionIndependantSound;
 import net.zeeraa.novacore.spigot.command.AllowedSenders;
 import net.zeeraa.novacore.spigot.debug.DebugCommandRegistrator;
 import net.zeeraa.novacore.spigot.debug.DebugTrigger;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.Game;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.GameEndReason;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.elimination.PlayerQuitEliminationAction;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.triggers.DelayedGameTrigger;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.triggers.GameTrigger;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.triggers.TriggerCallback;
+import net.zeeraa.novacore.spigot.gameengine.module.modules.game.triggers.TriggerFlag;
 import net.zeeraa.novacore.spigot.language.LanguageManager;
-import net.zeeraa.novacore.spigot.module.modules.game.Game;
-import net.zeeraa.novacore.spigot.module.modules.game.GameEndReason;
-import net.zeeraa.novacore.spigot.module.modules.game.elimination.PlayerQuitEliminationAction;
-import net.zeeraa.novacore.spigot.module.modules.game.triggers.DelayedGameTrigger;
-import net.zeeraa.novacore.spigot.module.modules.game.triggers.GameTrigger;
-import net.zeeraa.novacore.spigot.module.modules.game.triggers.TriggerCallback;
-import net.zeeraa.novacore.spigot.module.modules.game.triggers.TriggerFlag;
 import net.zeeraa.novacore.spigot.module.modules.multiverse.MultiverseManager;
 import net.zeeraa.novacore.spigot.module.modules.multiverse.MultiverseWorld;
 import net.zeeraa.novacore.spigot.module.modules.multiverse.PlayerUnloadOption;
@@ -78,7 +78,7 @@ public class DeathSwap extends Game implements Listener {
 	public DeathSwap() {
 		super(NovaDeathSwap.getInstance());
 	}
-	
+
 	/* -=-= Getters and setters =-=- */
 	public WorldPreGenerator getWorldPreGenerator() {
 		return worldPreGenerator;
@@ -99,7 +99,7 @@ public class DeathSwap extends Game implements Listener {
 	public PlayerQuitEliminationAction getPlayerQuitEliminationAction() {
 		return NovaDeathSwap.getInstance().isAllowReconnect() ? PlayerQuitEliminationAction.DELAYED : PlayerQuitEliminationAction.INSTANT;
 	}
-	
+
 	@Override
 	public int getPlayerEliminationDelay() {
 		return NovaDeathSwap.getInstance().getReconnectTime();
@@ -217,26 +217,26 @@ public class DeathSwap extends Game implements Listener {
 				swapTrigger.setDelay(getRandomSwapDelay());
 				swapTrigger.start();
 
-				if(NovaDeathSwap.getInstance().isUseCountdown()) {
+				if (NovaDeathSwap.getInstance().isUseCountdown()) {
 					BasicTimer timer = new BasicTimer(6);
-					
+
 					timer.addTickCallback(new TickCallback() {
 						@Override
 						public void execute(long timeLeft) {
-							if(timeLeft == 0) {
+							if (timeLeft == 0) {
 								return;
 							}
 							LanguageManager.broadcast("novauniverse.game.deathswap.swap_countdown", (timeLeft));
 						}
 					});
-					
+
 					timer.addFinishCallback(new Callback() {
 						@Override
 						public void execute() {
 							doSwap();
 						}
 					});
-					
+
 					timer.start();
 				} else {
 					doSwap();
@@ -247,7 +247,7 @@ public class DeathSwap extends Game implements Listener {
 		swapTrigger.addFlag(TriggerFlag.STOP_ON_GAME_END);
 
 		this.addTrigger(swapTrigger);
-		
+
 		DebugCommandRegistrator.getInstance().addDebugTrigger(new DebugTrigger() {
 			@Override
 			public void onExecute(CommandSender sender, String commandLabel, String[] args) {
@@ -291,10 +291,10 @@ public class DeathSwap extends Game implements Listener {
 		NovaDeathSwap.getInstance().getSwapProvider().onGameStart();
 
 		this.sendBeginEvent();
-		
+
 		started = true;
 	}
-	
+
 	private void tpAllToArena() {
 		startInvulnerability();
 		for (UUID uuid : players) {
@@ -339,7 +339,6 @@ public class DeathSwap extends Game implements Listener {
 		}
 	}
 
-
 	@Override
 	public void onEnd(GameEndReason reason) {
 		if (ended) {
@@ -377,7 +376,7 @@ public class DeathSwap extends Game implements Listener {
 
 		ended = true;
 	}
-	
+
 	@Override
 	public boolean canStart() {
 		return worldPreGenerator.isFinished();
@@ -425,21 +424,21 @@ public class DeathSwap extends Game implements Listener {
 	public void startInvulnerability() {
 		invulnerabilityEnabled = true;
 
-		for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+		Bukkit.getServer().getOnlinePlayers().forEach(player -> {
 			if (player.getGameMode() == GameMode.SURVIVAL) {
-				NovaCore.getInstance().getActionBar().sendMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_started"));
+				VersionIndependantUtils.get().sendActionBarMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_started"));
 			}
-		}
+		});
 
 		Bukkit.getScheduler().scheduleSyncDelayedTask(NovaDeathSwap.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				invulnerabilityEnabled = false;
-				for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+				Bukkit.getServer().getOnlinePlayers().forEach(player -> {
 					if (player.getGameMode() == GameMode.SURVIVAL) {
-						NovaCore.getInstance().getActionBar().sendMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_ended"));
+						VersionIndependantUtils.get().sendActionBarMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_ended"));
 					}
-				}
+				});
 			}
 		}, 20 * 5);
 	}
@@ -450,7 +449,7 @@ public class DeathSwap extends Game implements Listener {
 		Log.trace("DeathSwap", "tpToArenaLocation() " + player.getName() + " loc: " + location.getBlockX() + " " + location.getY() + " " + location.getBlockZ() + " center: " + LocationUtils.blockCenter(location.getBlockX()) + " " + location.getY() + " " + LocationUtils.blockCenter(location.getBlockZ()));
 
 		Location locationCenter = new Location(world, LocationUtils.blockCenter(location.getBlockX()), location.getY(), LocationUtils.blockCenter(location.getBlockZ()));
-		
+
 		player.teleport(locationCenter);
 		player.setGameMode(GameMode.SURVIVAL);
 		NovaCore.getInstance().getVersionIndependentUtils().setEntityMaxHealth(player, 20);
@@ -461,14 +460,14 @@ public class DeathSwap extends Game implements Listener {
 		player.setFoodLevel(20);
 		player.setSaturation(20);
 		player.setFallDistance(0);
-		
+
 		Bukkit.getScheduler().scheduleSyncDelayedTask(NovaDeathSwap.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				player.teleport(locationCenter);
 			}
 		}, 5L);
-		
+
 	}
 
 	public Location tryGetSpawnLocation() {
