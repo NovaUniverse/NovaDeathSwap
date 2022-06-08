@@ -35,8 +35,8 @@ import net.zeeraa.novacore.commons.timers.TickCallback;
 import net.zeeraa.novacore.commons.utils.Callback;
 import net.zeeraa.novacore.commons.utils.RandomGenerator;
 import net.zeeraa.novacore.spigot.NovaCore;
-import net.zeeraa.novacore.spigot.abstraction.VersionIndependantUtils;
-import net.zeeraa.novacore.spigot.abstraction.enums.VersionIndependantSound;
+import net.zeeraa.novacore.spigot.abstraction.VersionIndependentUtils;
+import net.zeeraa.novacore.spigot.abstraction.enums.VersionIndependentSound;
 import net.zeeraa.novacore.spigot.command.AllowedSenders;
 import net.zeeraa.novacore.spigot.debug.DebugCommandRegistrator;
 import net.zeeraa.novacore.spigot.debug.DebugTrigger;
@@ -360,7 +360,7 @@ public class DeathSwap extends Game implements Listener {
 				PlayerUtils.clearPlayerInventory(p);
 				PlayerUtils.resetPlayerXP(p);
 				p.setGameMode(GameMode.SPECTATOR);
-				VersionIndependantUtils.get().playSound(p, p.getLocation(), VersionIndependantSound.WITHER_DEATH, 1F, 1F);
+				VersionIndependentUtils.get().playSound(p, p.getLocation(), VersionIndependentSound.WITHER_DEATH, 1F, 1F);
 
 				Firework fw = (Firework) p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
 				FireworkMeta fwm = fw.getFireworkMeta();
@@ -426,7 +426,7 @@ public class DeathSwap extends Game implements Listener {
 
 		Bukkit.getServer().getOnlinePlayers().forEach(player -> {
 			if (player.getGameMode() == GameMode.SURVIVAL) {
-				VersionIndependantUtils.get().sendActionBarMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_started"));
+				VersionIndependentUtils.get().sendActionBarMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_started"));
 			}
 		});
 
@@ -436,7 +436,7 @@ public class DeathSwap extends Game implements Listener {
 				invulnerabilityEnabled = false;
 				Bukkit.getServer().getOnlinePlayers().forEach(player -> {
 					if (player.getGameMode() == GameMode.SURVIVAL) {
-						VersionIndependantUtils.get().sendActionBarMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_ended"));
+						VersionIndependentUtils.get().sendActionBarMessage(player, LanguageManager.getString(player, "novauniverse.game.deathswap.invulnerability_ended"));
 					}
 				});
 			}
