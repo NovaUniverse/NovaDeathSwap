@@ -111,11 +111,6 @@ public class DeathSwap extends Game implements Listener {
 	}
 
 	@Override
-	public boolean eliminateIfCombatLogging() {
-		return NovaDeathSwap.getInstance().isCombatTagging();
-	}
-
-	@Override
 	public boolean isPVPEnabled() {
 		return false;
 	}
