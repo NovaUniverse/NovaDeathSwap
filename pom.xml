@@ -116,6 +116,11 @@
 			<id>novauniverse2</id>
 			<url>https://nexus2.novauniverse.net/repository/novauniverse/</url>
 		</repository>
+		
+		<repository>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
